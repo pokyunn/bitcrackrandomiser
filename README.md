@@ -1,3 +1,6 @@
+> [!WARNING] 
+> THIS BRANCH IS FOR TESTING PURPOSE
+
 # Bitcrack-Randomiser
 
 Bitcrackrandomiser is a solo pool for Bitcoin puzzle **66, 67 and 68**. It works with Bitcrack and VanitySearch.
