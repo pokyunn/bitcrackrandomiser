@@ -264,7 +264,6 @@ namespace BitcrackRandomiser
                 // Wait and restart
                 proofKeys[gpuIndex] = "";
                 isProofKeys[gpuIndex] = false;
-                Thread.Sleep(5000);
                 Scan(settings, gpuIndex);
             }
         }

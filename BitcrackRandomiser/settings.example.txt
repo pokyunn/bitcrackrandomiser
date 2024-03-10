@@ -61,3 +61,6 @@ force_continue=false
 
 // Private pool id
 private_pool=none
+
+// Time in seconds to sleep between tasks
+sleep_between_tasks=180

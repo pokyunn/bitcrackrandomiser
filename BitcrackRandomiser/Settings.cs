@@ -202,6 +202,11 @@ namespace BitcrackRandomiser
         /// </summary>
         public string PrivatePool { get; set; } = "none";
 
+        /// <summary> 
+        /// Time in seconds to leep between tasks 
+        /// </summary> 
+        public int SleepBetweenTasks { get; set; } = 5;
+
         /// <summary>
         /// Is private pool
         /// </summary>
@@ -345,6 +350,10 @@ namespace BitcrackRandomiser
                             break;
                         case "private_pool":
                             settings.PrivatePool = value;
+                            break;
+                        case "sleep_between_tasks":
+                            _ = int.TryParse(value, out int _sl);
+                            settings.SleepBetweenTasks = _sl;
                             break;
                     }
                 }
