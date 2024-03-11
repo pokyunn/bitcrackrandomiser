@@ -1,4 +1,4 @@
-﻿using BitcrackRandomiser.Enums;
+using BitcrackRandomiser.Enums;
 using BitcrackRandomiser.Helpers;
 using System.Diagnostics;
 using System.Reflection;
@@ -237,6 +237,12 @@ namespace BitcrackRandomiser
         /// <param name="gpuIndex">GPU index</param>
         private static void JobFinished(string targetAddress, string hex, Settings settings, bool keyFound = false, int gpuIndex = 0)
         {
+            // log to file
+            File.AppendAllText(
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "scanned_ranges.txt"),
+                hex + (keyFound ? " << here" : "") + Environment.NewLine
+            );
+
             if (keyFound)
             {
                 // Always send notification when key found
