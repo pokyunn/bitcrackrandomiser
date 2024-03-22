@@ -1,6 +1,8 @@
 using BitcrackRandomiser.Enums;
 using BitcrackRandomiser.Helpers;
+using System.Numerics;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace BitcrackRandomiser
 {
@@ -27,6 +29,16 @@ namespace BitcrackRandomiser
                 bool editSettings = Task.Factory.StartNew(() => Console.ReadLine()).Wait(TimeSpan.FromSeconds(3));
                 if (editSettings)
                     appSettings = Settings.SetSettings();
+            }
+
+            if (appSettings.CustomRange == "rand")
+            {
+                var rnd = new Random();
+                int target = rnd.Next(
+                    int.Parse("2000", System.Globalization.NumberStyles.HexNumber),
+                    int.Parse("3fff", System.Globalization.NumberStyles.HexNumber)
+                );
+                appSettings.CustomRange = target.ToString("X");
             }
 
             // Send worker start message to telegram or api if active
