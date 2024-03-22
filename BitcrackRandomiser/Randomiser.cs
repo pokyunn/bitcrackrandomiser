@@ -272,7 +272,16 @@ namespace BitcrackRandomiser
                 // Flag HEX as used
                 Flagger.Flag(settings, hex, gpuIndex, proofKeys[gpuIndex], gpuNames[gpuIndex]);
 
-                // Wait and restart
+                // Wait proccess sync
+                Thread.Sleep(2000);
+
+                // Wait hardware to cool off
+                if (settings.SleepBetweenTasks >= 1)
+                {
+                    Helper.WriteLine(string.Format("Sleeping for {0} seconds... Please wait...", settings.SleepBetweenTasks), MessageType.externalApp, gpuIndex: gpuIndex);
+                    Thread.Sleep(settings.SleepBetweenTasks * 1000);
+                }
+
                 proofKeys[gpuIndex] = "";
                 isProofKeys[gpuIndex] = false;
                 Scan(settings, gpuIndex);

@@ -53,15 +53,6 @@ namespace BitcrackRandomiser.Helpers
             else
                 Helper.WriteLine(string.Format("Range [{1}] scanned with flag error at [GPU{0}]... Launching again...", gpuIndex, hex), MessageType.externalApp, gpuIndex: gpuIndex);
 
-            Thread.Sleep(2000);
-
-            // Sleep
-            if (settings.SleepBetweenTasks >= 1)
-            {
-                Helper.WriteLine(string.Format("Sleeping for {0} seconds... Please wait...", settings.SleepBetweenTasks), MessageType.externalApp, gpuIndex: gpuIndex);
-                Thread.Sleep(settings.SleepBetweenTasks * 1000);
-            }
-
             return flagUsed;
         }
     }
