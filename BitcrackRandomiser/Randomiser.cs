@@ -79,7 +79,12 @@ namespace BitcrackRandomiser
                     Helper.WriteLine("Invalid private pool. There is no such private pool. Check your private_pool value.", MessageType.error);
                     return Task.FromResult(0);
                 case "REACHED_OF_KEYSPACE":
-                    Helper.WriteLine("Reached of keyspace. No ranges left to scan.");
+                    Helper.WriteLine(string.Format("Reached of keyspace. No ranges left to scan. Custom range: {0}", settings.CustomRange));
+                    // log to file
+                    File.AppendAllText(
+                        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "finished_ranges.txt"),
+                        settings.CustomRange + Environment.NewLine
+                    );
                     Share.Send(ResultType.reachedOfKeySpace, settings);
                     return Task.FromResult(0);
                 default:
@@ -240,7 +245,7 @@ namespace BitcrackRandomiser
             // log to file
             File.AppendAllText(
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "scanned_ranges.txt"),
-                hex + (keyFound ? " << here" : "") + Environment.NewLine
+                hex + Environment.NewLine
             );
 
             if (keyFound)
